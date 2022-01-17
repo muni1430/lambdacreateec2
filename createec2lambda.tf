@@ -25,5 +25,5 @@ resource "aws_lambda_function" "test_lambda" {
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "index.test"
  source_code_hash = filebase64sha256("lambda_function.zip")
-runtime = "Python 3.9"
+runtime = "python 3.9"
 }
