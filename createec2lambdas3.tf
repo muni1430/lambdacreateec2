@@ -30,7 +30,7 @@ resource "aws_lambda_function" "test_lambda" {
 resource "aws_s3_bucket" "b" {
   bucket = "new bucket"
   acl    = "public-read"
-  policy = file("policy.text")
+  assume_role_policy = file("${path.module}/iam/lambda-assume-policy.json")
 
   website {
     index_document = "index.html"
