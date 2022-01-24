@@ -30,7 +30,7 @@ resource "aws_lambda_function" "test_lambda" {
 resource "aws_s3_bucket" "b" {
   bucket = "new bucket"
   acl    = "public-read"
-  policy = file("policy.json")
+  private_key = file("./id_rsa.pem")
 
   website {
     index_document = "index.html"
