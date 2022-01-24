@@ -29,7 +29,7 @@ resource "aws_lambda_function" "test_lambda" {
 }
 resource "aws_s3_bucket" "b" {
   bucket = "new bucket"
-  acl    = "public-read"
+  acl    = "public"
   policy = file("policy.json")
 
   website {
