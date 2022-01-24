@@ -27,3 +27,23 @@ resource "aws_lambda_function" "test_lambda" {
   source_code_hash = filebase64sha256("lambda_function.zip")
   runtime = "python3.9"
 }
+resource "aws_s3_bucket" "b" {
+  bucket = "new bucket"
+  acl    = "public-read"
+  policy = file("policy.json")
+
+  website {
+    index_document = "index.html"
+    error_document = "error.html"
+
+    routing_rules = <<EOF
+[{
+    "Condition": {
+        "KeyPrefixEquals": "docs/"
+    },
+    "Redirect": {
+        "ReplaceKeyPrefixWith": "documents/"
+    }
+}]
+EOF
+  }
